@@ -70,4 +70,62 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[currentPosition + index].classList.remove("tetromino");
     });
   }
+
+  //move down every second
+  timerId = setInterval(moveDown, 1000);
+
+  //assign functions to keyCodes
+
+  function control(e) {
+    if (e.keyCode === 37) {
+      moveLeft();
+    }
+  }
+  document.addEventListener("keyup", control);
+
+  //move down function
+  function moveDown() {
+    undraw();
+    currentPosition += width;
+    draw();
+    freeze();
+  }
+
+  //freeze function
+  function freeze() {
+    if (
+      current.some((index) =>
+        squares[currentPosition + index + width].classList.contains("taken")
+      )
+    ) {
+      current.forEach((index) =>
+        squares[currentPosition + index].classList.add("taken")
+      );
+      //start a new piece
+      random = Math.floor(Math.random() * theTretrominoes.length);
+      current = theTretrominoes[random][currentRotation];
+      currentPosition = 4;
+      draw();
+    }
+  }
+
+  //move left
+  function moveLeft() {
+    undraw();
+    const isAtLeftEdge = current.some(
+      (index) => (currentPosition + index) % width === 0
+    );
+
+    if (!isAtLeftEdge) currentPosition -= 1;
+
+    if (
+      current.some((index) =>
+        squares[currentPosition + index].classLists.contains("taken")
+      )
+    ) {
+      currentPosition += 1;
+    }
+
+    draw();
+  }
 });
