@@ -79,6 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function control(e) {
     if (e.keyCode === 37) {
       moveLeft();
+    } else if (e.keyCode === 38) {
+      rotate();
+    } else if (e.keyCode === 39) {
+      moveRight();
+    } else if (e.keyCode === 40) {
+      moveDown();
     }
   }
   document.addEventListener("keyup", control);
@@ -126,6 +132,37 @@ document.addEventListener("DOMContentLoaded", () => {
       currentPosition += 1;
     }
 
+    draw();
+  }
+
+  //move right
+  function moveRight() {
+    undraw();
+    const isAtRightEdge = current.some(
+      (index) => (currentPosition + index) % width === width - 1
+    );
+
+    if (!isAtRightEdge) currentPosition += 1;
+
+    if (
+      current.some((index) =>
+        squares[currentPosition + index].classLists.contains("taken")
+      )
+    ) {
+      currentPosition -= 1;
+    }
+
+    draw();
+  }
+
+  //rotate the piece
+  function rotate() {
+    undraw();
+    currentRotation++;
+    if (currentRotation === current.length) {
+      currentRotation = 0;
+    }
+    current = theTretrominoes[random][currentRotation];
     draw();
   }
 });
