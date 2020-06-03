@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".grid");
   let squares = Array.from(document.querySelectorAll(".grid div"));
   const scoreDisplay = document.querySelector("#score");
+  const levelDisplay = document.querySelector("#level");
   const startBtn = document.querySelector("#start-button");
   const width = 10;
   let nextRandom = 0;
   let timerId;
+  let level = 1;
   let score = 0;
   const colors = ["orange", "red", "purple", "green", "blue"];
 
@@ -135,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
       current.some((index) =>
-        squares[currentPosition + index].classLists.contains("taken")
+        squares[currentPosition + index].classList.contains("taken")
       )
     ) {
       currentPosition += 1;
@@ -155,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
       current.some((index) =>
-        squares[currentPosition + index].classLists.contains("taken")
+        squares[currentPosition + index].classList.contains("taken")
       )
     ) {
       currentPosition -= 1;
