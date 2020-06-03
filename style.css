@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  justify-content: center;
 }
 
 .grid {
@@ -36,4 +37,17 @@
 
 .buttons {
   margin-left: 50px;
+}
+
+.head {
+  justify-content: center;
+  background-color: violet;
+}
+
+.description {
+  justify-content: center;
+}
+
+#top {
+  margin-left: 35%;
 }
