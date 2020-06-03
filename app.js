@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const levelDisplay = document.querySelector("#level");
   const startBtn = document.querySelector("#start-button");
+  const topBtn = document.querySelector("#top");
+  const leftBtn = document.querySelector("#left");
+  const downBtn = document.querySelector("#down");
+  const rightBtn = document.querySelector("#right");
   const width = 10;
   let nextRandom = 0;
   let timerId;
@@ -217,6 +221,23 @@ document.addEventListener("DOMContentLoaded", () => {
       nextRandom = Math.floor(Math.random() * theTretrominoes.length);
       displayShape();
     }
+  });
+
+  //add functinality to the buttons
+  topBtn.addEventListener("click", () => {
+    rotate();
+  });
+
+  leftBtn.addEventListener("click", () => {
+    moveLeft();
+  });
+
+  rightBtn.addEventListener("click", () => {
+    moveRight();
+  });
+
+  downBtn.addEventListener("click", () => {
+    moveDown();
   });
 
   //add score
