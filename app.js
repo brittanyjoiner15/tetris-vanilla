@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       draw();
       displayShape();
       addScore();
+      levelUp();
       gameOver();
     }
   }
@@ -246,6 +247,31 @@ document.addEventListener("DOMContentLoaded", () => {
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
       }
+    }
+  }
+
+  //increase level
+  function levelUp() {
+    if (score > 29 && score < 49) {
+      clearInterval(timerId);
+      timerId = setInterval(moveDown, 800);
+      level = 2;
+      levelDisplay.innerHTML = level;
+    } else if (score > 49 && score < 79) {
+      clearInterval(timerId);
+      timerId = setInterval(moveDown, 600);
+      level = 3;
+      levelDisplay.innerHTML = level;
+    } else if (score > 79 && score < 109) {
+      clearInterval(timerId);
+      timerId = setInterval(moveDown, 400);
+      level = 4;
+      levelDisplay.innerHTML = level;
+    } else if (score > 110) {
+      clearInterval(timerId);
+      timerId = setInterval(moveDown, 200);
+      level = 5;
+      levelDisplay.innerHTML = level;
     }
   }
 
